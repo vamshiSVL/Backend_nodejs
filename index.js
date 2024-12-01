@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const vendorroutes = require('./vendorroutes');
 
 const app = express();
-const port = 4000;
+const port = process.env.PORT || 4000;
 
 dotEnv.config();
 
@@ -19,7 +19,7 @@ app.listen(port,()=>{
     console.log(`server starts at ${port}`);
 });
 
-app.use('/home',(req,res)=>{
+app.use('/',(req,res)=>{
     res.send("<h1>welcome");
 });
 
