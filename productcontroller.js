@@ -1,48 +1,37 @@
 const product = require('./product');
 const firm = require('./firm');
 const multer = require('multer');
-<<<<<<< HEAD
 const path = require('path');
 const fs = require('fs');
-const { findById, findByIdAndDelete } = require('./vendor');
 
+// Ensure the uploads folder exists
 const uploadDir = 'uploads/';
 if (!fs.existsSync(uploadDir)) {
     fs.mkdirSync(uploadDir);
 }
-=======
->>>>>>> cf826f07129cd27efd8af246f233c85d23c650bc
 
+// Set up multer storage
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-      // Set the upload directory
-      cb(null, 'uploads/');
+        cb(null, 'uploads/');
     },
     filename: (req, file, cb) => {
-      // Set the file name for the uploaded image
-      cb(null, Date.now() + path.extname(file.originalname)); // adds timestamp to the file name
+        cb(null, Date.now() + path.extname(file.originalname)); // adds timestamp to the file name
     }
-  });
-  
-  // Initialize multer with the storage configuration
-  const upload = multer({ storage: storage });
+});
 
-const productsregister = async(req, res) => {
+// Initialize multer with the storage configuration
+const upload = multer({ storage });
+
+const productsregister = async (req, res) => {
     try {
         // Extract product details from the request body
-<<<<<<< HEAD
-        const { productname, price, category, description } = req.body;
-=======
         const { productname, price, category, bestseller, description } = req.body;
->>>>>>> cf826f07129cd27efd8af246f233c85d23c650bc
-        const image = req.file?req.file.filename:undefined;
+        const image = req.file ? req.file.filename : undefined;
         const firmid = req.params.firmid;  // Firm ID from the URL params
 
         console.log(firmid);
-<<<<<<< HEAD
         const categoryArray = typeof category === 'string' ? category.split(',') : category;
-=======
->>>>>>> cf826f07129cd27efd8af246f233c85d23c650bc
 
         // Find the firm by its ID
         const Firm = await firm.findById(firmid);
@@ -56,14 +45,9 @@ const productsregister = async(req, res) => {
         const newproduct = new product({
             productname,
             price,
-<<<<<<< HEAD
             category: categoryArray,
             image,
-=======
-            category,
-            image,
             bestseller,
->>>>>>> cf826f07129cd27efd8af246f233c85d23c650bc
             description,
             firm: Firm.id  // Link the product to this firm
         });
@@ -101,18 +85,13 @@ const totalproducts = async (req, res) => {
         }
 
         // Return the list of products associated with the firm
-<<<<<<< HEAD
-        res.status(200).json(pro);
-=======
-        res.status(200).json({ products: pro });
->>>>>>> cf826f07129cd27efd8af246f233c85d23c650bc
+        res.status(200).json({ products: pro.products });
     } catch (error) {
         console.log(error);
         res.status(500).json({ error: "Server error" });
     }
 };
 
-<<<<<<< HEAD
 const deleteproduct = async (req, res) => {
     try {
         const { firmid, proid } = req.params; // Get IDs from URL params
@@ -141,9 +120,8 @@ const deleteproduct = async (req, res) => {
     }
 };
 
-
-
-module.exports = {productsregister: [upload.single('image'), productsregister],totalproducts,deleteproduct};
-=======
-module.exports = { productsregister:[upload.single('image'), productsregister],totalproducts};
->>>>>>> cf826f07129cd27efd8af246f233c85d23c650bc
+module.exports = { 
+    productsregister: [upload.single('image'), productsregister],
+    totalproducts,
+    deleteproduct
+};
