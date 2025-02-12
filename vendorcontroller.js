@@ -4,7 +4,11 @@ const bcrypt = require('bcryptjs');
 const dotEnv = require('dotenv');
 
 dotEnv.config();
+<<<<<<< HEAD
 const secretkey = process.env.WhatIsYourName;   
+=======
+const secretkey = process.env.WhatIsYourName;
+>>>>>>> cf826f07129cd27efd8af246f233c85d23c650bc
 
 const vendorregister = async(req, res)=>{
     const {username, email, password} = req.body 
@@ -38,8 +42,12 @@ const vendorlogin = async(req,res)=>{
             res.status(401).json({error: "invalid username or password"});
         }else{
             const token = jwt.sign({vendorid: vendoremail._id}, secretkey, {expiresIn: "1h"});
+<<<<<<< HEAD
             console.log(vendoremail.firm)
             res.status(200).json({success: "login successfull",token,firms:vendoremail.firm});
+=======
+            res.status(200).json({success: "login successfull",token});
+>>>>>>> cf826f07129cd27efd8af246f233c85d23c650bc
         }
     }catch(error){
         res.status(500).json(error);
@@ -57,4 +65,8 @@ const totallist = async(req,res)=>{
     }
 };
 
+<<<<<<< HEAD
 module.exports = { vendorregister ,vendorlogin, totallist };
+=======
+module.exports = { vendorregister ,vendorlogin, totallist};
+>>>>>>> cf826f07129cd27efd8af246f233c85d23c650bc

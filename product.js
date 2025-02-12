@@ -2,11 +2,19 @@ const mongoose = require('mongoose');
 const productschema = mongoose.Schema({
     productname:{
         type:String,
+<<<<<<< HEAD
         // required:true
     },
     price:{
         type:String,
         // required:true
+=======
+        required:true
+    },
+    price:{
+        type:String,
+        required:true
+>>>>>>> cf826f07129cd27efd8af246f233c85d23c650bc
     },
     category:{
         type:[{
@@ -17,6 +25,12 @@ const productschema = mongoose.Schema({
     image:{
         type:String
     },
+<<<<<<< HEAD
+=======
+    bestseller:{
+        type:String
+    },
+>>>>>>> cf826f07129cd27efd8af246f233c85d23c650bc
     description:{
         type:String
     },
