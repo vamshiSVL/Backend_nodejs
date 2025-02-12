@@ -11,10 +11,7 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.3",
-<<<<<<< HEAD
     "cors": "^2.8.5",
-=======
->>>>>>> cf826f07129cd27efd8af246f233c85d23c650bc
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
     "jsonwebtoken": "^9.0.2",
@@ -22,10 +19,7 @@
     "multer": "^1.4.5-lts.1",
     "nodemon": "^3.1.7"
   },
-  "keywords": [],
-<<<<<<< HEAD
-=======
   "devDependencies": {},
->>>>>>> cf826f07129cd27efd8af246f233c85d23c650bc
+  "keywords": [],
   "description": ""
 }
